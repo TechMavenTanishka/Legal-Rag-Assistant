@@ -33,15 +33,15 @@ requirements.txt
 
 1. Clone repository
 
-git clone <repo-url>
+  git clone <repo-url>
 
 2. Install dependencies
 
-pip install -r requirements.txt
+  pip install -r requirements.txt
 
 3. Run application
 
-streamlit run src/streamlit_app/app.py
+  streamlit run src/streamlit_app/app.py
 
 ## Dashboard Modules
 - Case Insights
