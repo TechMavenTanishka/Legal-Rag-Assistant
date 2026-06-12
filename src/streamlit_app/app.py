@@ -25,12 +25,12 @@ st.markdown("""
 <style>
 
 /* Main background */
-.stApp{
+.stApp {
     background-color:#F5F7FA;
 }
 
 /* Main title */
-.main-title{
+.main-title {
     font-size:48px;
     font-weight:800;
     color:#1F2937;
@@ -38,28 +38,60 @@ st.markdown("""
 }
 
 /* Subtitle */
-.sub-title{
+.sub-title {
     font-size:18px;
     color:#6B7280;
     margin-bottom:25px;
 }
 
 /* Section heading */
-.section-title{
+.section-title {
     font-size:32px;
     font-weight:700;
     color:#1F2937;
     margin-bottom:20px;
 }
 
-.metric-card{
+.metric-card {
     background:white;
     padding:20px;
     border-radius:16px;
     box-shadow:0px 4px 12px rgba(0,0,0,0.08);
     text-align:center;
     min-height:120px;
-}            
+}
+
+/* Fixes Recent Activity Font Size */
+div[data-testid="stMarkdownContainer"] p {
+    font-size: 26px !important;
+    line-height: 1.6 !important;
+}
+
+/* Fixes Most Queried Topics Table Font Size */
+div[data-testid="stDataFrame"] table, 
+div[data-testid="stDataFrame"] div,
+.stDataFrame div[role="grid"] div {
+    font-size: 26px !important;
+}
+
+/* Fixes the text typed inside the Text Area box */
+div[data-testid="stTextArea"] textarea {
+    font-size: 18px !important;
+    color: #1F2937 !important;
+}
+
+/* Fixes the placeholder text scale ("Example: What is negligence?") */
+div[data-testid="stTextArea"] textarea::placeholder {
+    font-size: 20px !important;
+    color: #9CA3AF !important;
+}
+
+/* Fixes the input box field label text ("Enter your legal question") */
+div[data-testid="stTextArea"] label p {
+    font-size: 30px !important;
+    font-weight: 600 !important;
+}                 
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -96,7 +128,7 @@ case_status_df = pd.DataFrame({
 })
 
 # ==========================================================
-# CUSTOM STYLING (Add this here!)
+# CUSTOM STYLING
 # ==========================================================
 st.markdown("""
 <style>
@@ -166,7 +198,7 @@ with tab1:
             <h4>Chunks Indexed</h4>
             <h2>45.9K</h2>
         </div>
-        """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)   
 
     with col4:
         st.markdown("""
@@ -196,7 +228,8 @@ with tab1:
             fig.update_layout(
                 height=320,
                 template="plotly_white",
-                margin=dict(l=10, r=10, t=30, b=10)
+                margin=dict(l=10, r=10, t=30, b=10),
+                font=dict(size=15)
             )
 
             st.plotly_chart(
@@ -220,7 +253,8 @@ with tab1:
             pie.update_layout(
                 height=320,
                 template="plotly_white",
-                margin=dict(l=10,r=10,t=30,b=10)
+                margin=dict(l=10, r=10, t=30, b=10),
+                font=dict(size=15)
             )
 
             st.plotly_chart(
@@ -419,6 +453,19 @@ with tab3:
         y="Response Time",
         markers=True,
         title="Query Volume vs Response Time"
+    )
+
+    # Directly inject the font sizes right here
+    fig.update_layout(
+        font=dict(size=18),                  # Scales up X & Y axis numbers and labels
+        title=dict(font=dict(size=20))       # Scales up the main graph title
+    )
+
+    fig.update_layout(
+        template="plotly_white",
+        font=dict(size=15),                 # Scales up X/Y axis titles and labels
+        title=dict(font=dict(size=18)),     # Makes the chart title slightly larger too
+        margin=dict(l=10, r=10, t=40, b=10)
     )
 
     st.plotly_chart(

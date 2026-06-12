@@ -82,6 +82,6 @@ Question:
 
     return {
         "answer": answer,
-        "sources": results["documents"][0][:5],
-        "num_sources": len(results["documents"][0][:5])
+        "sources": results["documents"][0][:3],
+        "num_sources": len(results["documents"][0][:3])
     }
